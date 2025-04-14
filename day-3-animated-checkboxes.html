@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DAY 3 | Animated Checkboxes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Inter", sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 6px;
+      user-select: none;
+    }
+
+    .checkbox-container:hover {
+      background-color: #f3f1f1;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border: 2px solid grey;
+      border-radius: 6px;
+      transition: all ease 0.5s;
+    }
+
+    .checkbox-container.checked .checkbox {
+      background-color: #3478f4;
+      color: white;
+      border: transparent;
+    }
+
+    .text {
+      position: relative;
+      color: grey;
+    }
+
+    .text::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      height: 2px;
+      width: 0%;
+      background: grey;
+      transition: width 0.3s ease;
+      transform: translateY(-50%);
+    }
+
+    .checkbox-container.checked .text::after {
+      width: 100%;
+    }
+
+    .checkbox-container:not(.checked) iconify-icon {
+      display: none;
+    }
+
+    .checkmark {
+      width: 16px;
+      height: 16px;
+      stroke-dasharray: 24;
+      stroke-dashoffset: 24;
+      transition: stroke-dashoffset 0.3s ease;
+    }
+
+    .checkbox-container.checked .checkmark {
+      stroke-dashoffset: 0;
+    }
+  </style>
+
+  <body>
+    <div class="outer"></div>
+    <div class="real-checkbox"></div>
+
+    <div class="container">
+      <div class="checkbox-container checked">
+        <div class="checkbox">
+          <svg
+            class="checkmark"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 13L9 17L19 7" />
+          </svg>
+        </div>
+        <div class="text">Buy groceries</div>
+      </div>
+
+      <div class="checkbox-container checked">
+        <div class="checkbox">
+          <svg
+            class="checkmark"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 13L9 17L19 7" />
+          </svg>
+        </div>
+        <div class="text">Contemplate Existance</div>
+      </div>
+
+      <div class="checkbox-container checked">
+        <div class="checkbox">
+          <svg
+            class="checkmark"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 13L9 17L19 7" />
+          </svg>
+        </div>
+        <div class="text">Learn SwiftUI</div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const checkboxes = document.querySelectorAll(".checkbox-container");
+
+        checkboxes.forEach((container) => {
+          container.addEventListener("click", () => {
+            container.classList.toggle("checked");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
