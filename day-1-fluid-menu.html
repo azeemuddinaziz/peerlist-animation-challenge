@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DAY 1 | Liquid Menu</title>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    .text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    div.container {
+      padding: 16px 16px;
+      width: fit-content;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.3s ease;
+    }
+
+    ul li {
+      list-style: none;
+      transform: scale(0);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      cursor: pointer;
+    }
+
+    ul li:not(:first-child) {
+      margin-top: -20px;
+      color: rgb(140, 140, 140);
+    }
+
+    ul li iconify-icon {
+      background: #dedede;
+      padding: 16px;
+      border-radius: 50%;
+      display: block;
+      transition: 0.1s all ease-in;
+    }
+
+    ul li:hover iconify-icon {
+      color: black;
+      font-weight: bold;
+    }
+
+    ul li:first-child {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    ul.active li {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    ul.active li:nth-child(2) {
+      transition-delay: 0.1s;
+    }
+    ul.active li:nth-child(3) {
+      transition-delay: 0.2s;
+    }
+    ul.active li:nth-child(4) {
+      transition-delay: 0.3s;
+    }
+    ul.active li:nth-child(5) {
+      transition-delay: 0.4s;
+    }
+
+    ul li iconify-icon.close,
+    ul.active iconify-icon.open {
+      display: none;
+    }
+
+    ul.active li iconify-icon.close,
+    ul li iconify-icon.open {
+      display: block;
+    }
+  </style>
+
+  <body>
+    <div class="text">Open the menu bar on the top left corner.</div>
+    <div class="container">
+      <ul id="menu">
+        <li id="toggleBtn">
+          <iconify-icon
+            class="close"
+            icon="mingcute:close-fill"
+            width="24"
+            height="24"
+          ></iconify-icon>
+          <iconify-icon
+            class="open"
+            icon="lucide:menu"
+            width="24"
+            height="24"
+          ></iconify-icon>
+        </li>
+        <li>
+          <iconify-icon
+            icon="lucide:home"
+            width="24"
+            height="24"
+          ></iconify-icon>
+        </li>
+        <li>
+          <iconify-icon
+            icon="lucide:mail"
+            width="24"
+            height="24"
+          ></iconify-icon>
+        </li>
+        <li>
+          <iconify-icon
+            icon="lucide:user"
+            width="24"
+            height="24"
+          ></iconify-icon>
+        </li>
+        <li>
+          <iconify-icon
+            icon="lucide:settings"
+            width="24"
+            height="24"
+          ></iconify-icon>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      const menuToggleBtn = document.querySelector("#toggleBtn");
+      const menu = document.querySelector("#menu");
+
+      menuToggleBtn.addEventListener("click", () => {
+        menu.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>
