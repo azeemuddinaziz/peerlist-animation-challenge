@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Status Indicator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  </head>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: "Inter", sans-serif;
+      transition: all ease 0.5s;
+    }
+
+    div {
+      display: flex;
+      width: 160px;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #e9f1fe;
+      padding: 8px 16px;
+      border-radius: 24px;
+      gap: 8px;
+      color: #62a8f9;
+      transform: scale(2);
+      animation: expand-1 0.5s ease;
+      overflow: hidden;
+      font-size: 12px;
+    }
+
+    div.green {
+      width: 130px;
+      background-color: #ddf2dc;
+      color: #60bf5c;
+      animation: expand-2 0.5s ease;
+    }
+
+    div.red {
+      width: 140px;
+      background-color: #fae1df;
+      color: #eb4b43;
+      animation: expand-3 0.5s ease;
+    }
+
+    div.red iconify-icon {
+      transform: scale(0.8);
+      animation: rotate-vibrate 0.1s linear 0.2s;
+    }
+
+    div.green iconify-icon,
+    div.blue iconify-icon {
+      transform: scale(0.8);
+      animation: scale-icon 0.7s ease;
+    }
+
+    div span {
+      animation: slide-in 0.3s linear, slide-out 0.3s 2.7s linear;
+    }
+
+    @keyframes rotate-vibrate {
+      0% {
+        transform: translateX(0);
+      }
+      25% {
+        transform: translateX(20%);
+      }
+      50% {
+        transform: translateX(0);
+      }
+      75% {
+        transform: translateX(-20%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes expand-1 {
+      0% {
+        width: 200px;
+      }
+      100% {
+        width: 160px;
+      }
+    }
+
+    @keyframes expand-2 {
+      0% {
+        width: 160px;
+      }
+      100% {
+        width: 130px;
+      }
+    }
+
+    @keyframes expand-3 {
+      0% {
+        width: 180px;
+      }
+      100% {
+        width: 140px;
+      }
+    }
+
+    @keyframes scale-icon {
+      0% {
+        transform: scale(0.5);
+      }
+      100% {
+        transform: scale(0.8);
+      }
+    }
+
+    @keyframes slide-in {
+      0% {
+        opacity: 0;
+        transform: translateX(120%);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0%);
+      }
+    }
+
+    @keyframes slide-out {
+      0% {
+        opacity: 1;
+        transform: translateX(0%);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(120%);
+      }
+    }
+
+    body div {
+      display: none;
+    }
+    body.blue div.blue {
+      display: flex;
+    }
+    body.green div.green {
+      display: flex;
+    }
+    body.red div.red {
+      display: flex;
+    }
+  </style>
+
+  <body id="body" class="blue">
+    <div class="blue">
+      <iconify-icon
+        icon="eos-icons:loading"
+        width="24"
+        height="24"
+      ></iconify-icon>
+      <span>Analyzing Transaction</span>
+    </div>
+
+    <div class="green">
+      <iconify-icon
+        icon="mdi:tick-circle"
+        width="24"
+        height="24"
+      ></iconify-icon>
+      <span>Transaction Safe</span>
+    </div>
+
+    <div class="red">
+      <iconify-icon
+        icon="fluent:warning-12-filled"
+        width="24"
+        height="24"
+      ></iconify-icon>
+      <span>Analyzing Warning</span>
+    </div>
+
+    <script>
+      const body = document.querySelector("#body");
+      const classes = ["green", "blue", "red", "blue"];
+      let index = 0;
+
+      setInterval(() => {
+        body.className = classes[index];
+        index = (index + 1) % classes.length;
+      }, 2900);
+    </script>
+  </body>
+</html>
