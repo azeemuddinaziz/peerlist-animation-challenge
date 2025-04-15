@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DAY 4 | Animated Toggle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: "Inter", sans-serif;
+    }
+
+    .container {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      min-width: 600px;
+      height: 100px;
+      padding: 8px;
+      border-radius: 80px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+    .bg {
+      position: absolute;
+      width: 50%;
+      height: calc(100% - 8px);
+      z-index: -1;
+      background-color: black;
+      border-radius: 80px;
+      transition: 0.1s ease-in all;
+    }
+
+    .premium.active ~ .bg {
+      transform: translateX(calc(95%));
+    }
+
+    .container .free,
+    .container .premium {
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      cursor: pointer;
+      flex: 1;
+      border-radius: 80px;
+      padding: 24px;
+    }
+
+    .container div.active {
+      color: white;
+    }
+
+    .free,
+    .maintab span.one {
+      font-weight: bold;
+    }
+
+    .maintab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .maintab span.two {
+      font-size: 12px;
+    }
+
+    .subtabs {
+      display: none;
+      opacity: 0;
+    }
+
+    .premium.active {
+      position: relative;
+    }
+
+    .premium.active .maintab {
+      transform: scale(0.1, 0.1);
+      opacity: 0;
+      display: none;
+    }
+
+    .premium.active .subtabs {
+      opacity: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      width: 100%;
+      font-weight: 600;
+    }
+
+    .subtabs div.monthly,
+    .subtabs div.annual {
+      width: 100%;
+      text-align: center;
+    }
+
+    .subtabs div.active {
+      color: black;
+    }
+
+    .subtabs .sub-bg {
+      left: 0;
+      position: absolute;
+      width: 55%;
+      height: 90%;
+      background-color: white;
+      border-radius: 80px;
+      z-index: -1;
+      transition: 0.1s ease all;
+    }
+
+    .annual.active ~ .sub-bg {
+      transform: translateX(92%);
+      width: 50%;
+    }
+  </style>
+
+  <body>
+    <div class="container">
+      <div class="active free">Free</div>
+      <div class="premium">
+        <div class="maintab">
+          <span class="one">Premium</span>
+          <span class="two">Monthly | Annual</span>
+        </div>
+        <div class="subtabs">
+          <div class="active monthly">Monthly</div>
+          <div class="annual">Annual</div>
+          <div class="sub-bg"></div>
+        </div>
+      </div>
+      <div class="bg"></div>
+    </div>
+
+    <script>
+      const freeTab = document.querySelector(".free");
+      const premiumTab = document.querySelector(".premium");
+
+      freeTab.addEventListener("click", () => {
+        freeTab.classList.add("active");
+        premiumTab.classList.remove("active");
+      });
+
+      premiumTab.addEventListener("click", () => {
+        premiumTab.classList.add("active");
+        freeTab.classList.remove("active");
+      });
+
+      const monthlyTab = document.querySelector(".monthly");
+      const annualTab = document.querySelector(".annual");
+
+      monthlyTab.addEventListener("click", () => {
+        monthlyTab.classList.add("active");
+        annualTab.classList.remove("active");
+      });
+
+      annualTab.addEventListener("click", () => {
+        annualTab.classList.add("active");
+        monthlyTab.classList.remove("active");
+      });
+    </script>
+  </body>
+</html>
